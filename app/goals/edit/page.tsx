@@ -10,21 +10,22 @@ import Link from 'next/link';
 interface Goal {
   id: string;
   title: string;
-  region_coords: {
+  region_coords?: {
     x: number;
     y: number;
     width: number;
     height: number;
   };
-  vision_board_id: string;
+  region?: {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+  };
+  vision_board_id?: string;
+  user_id?: string;
+  is_active?: boolean;
 }
-
-interface VisionBoard {
-  id: string;
-  image_url: string;
-  title: string;
-}
-
 export default function EditRegionsPage() {
   const router = useRouter();
   const [visionBoard, setVisionBoard] = useState<VisionBoard | null>(null);

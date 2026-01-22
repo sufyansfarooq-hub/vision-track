@@ -29,12 +29,15 @@ export default function DailyCheckinPage() {
     checkExistingCheckin();
   }, []);
 
-  const checkExistingCheckin = async () => {
-    try {
-      await ensureAuth();
-      const userId = await getCurrentUserId();
-      const today = new Date().toISOString().split('T')[0];
-
+const checkExistingCheckin = async () => {
+  try {
+    await ensureAuth();
+    const userId = await getCurrentUserId();
+    if (!userId) {
+      setLoading(false);
+      return;
+    }
+    const today = new Date().toISOString().split('T')[0];
       // Check if already checked in today
       const { data: existing } = await supabase
         .from('daily_reflections')
