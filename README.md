@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vision Board Scanner
 
-## Getting Started
+An AI-powered vision board scanning app that extracts and categorizes goals from vision board images using OpenAI's GPT-4o Vision API.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 📸 Upload vision board images
+- 🤖 AI-powered goal extraction using GPT-4o Vision API
+- 🎯 Extracts 3-10 goals with titles, descriptions, and categories
+- 🎨 Beautiful blue/white gradient UI with Tailwind CSS
+- 📱 Responsive design
+- ⚡ Real-time loading states
+- 🏷️ Color-coded category badges
+
+## Setup
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+2. **Set up your OpenAI API key:**
+
+   Create a `.env.local` file in the root directory:
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+   Then add your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_openai_api_key_here
+   ```
+
+   Get your API key from: https://platform.openai.com/api-keys
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Usage
+
+1. Click "Choose Vision Board Image" to upload an image of your vision board
+2. Click "Scan Vision Board" to analyze the image
+3. Wait for the AI to extract your goals (usually takes 5-15 seconds)
+4. View your extracted goals displayed in beautiful cards with categories
+
+## Categories
+
+Goals are automatically categorized into:
+- 💼 Career
+- 🏃 Health
+- 💕 Relationships
+- 💰 Finance
+- 🌟 Personal
+- ✈️ Travel
+- 📚 Education
+- 🎨 Lifestyle
+
+## Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **AI:** OpenAI GPT-4o Vision API
+- **Image Handling:** Next.js Image component
+
+## Project Structure
+
+```
+vision-track/
+├── app/
+│   ├── api/
+│   │   └── analyze/
+│   │       └── route.ts          # OpenAI Vision API endpoint
+│   ├── page.tsx                   # Main upload and display page
+│   ├── layout.tsx                 # Root layout
+│   └── globals.css                # Global styles
+├── .env.local                     # Environment variables (create this)
+└── next.config.ts                 # Next.js configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## How It Works
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. User uploads a vision board image through the web interface
+2. Image is converted to base64 and sent to the API route
+3. API route sends the image to OpenAI's GPT-4o Vision API with a detailed prompt
+4. GPT-4o analyzes the image and extracts goals in JSON format
+5. Goals are displayed in a responsive card grid with categories and descriptions
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
